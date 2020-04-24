@@ -20,22 +20,40 @@ function google_drive($id){
     $url = "https://drive.google.com/uc?id=" . $id . "&export=download" ;
     $html = file_get_contents($url);
     preg_match('/uc-download-link[^>]*(.href=["]).*?["]/is',$html,$match1);//正则匹配下载里面的内容
+
+    //获取cookie
+    $cookie = "";
+    foreach ($http_response_header as $header) {
+        if (preg_match('/Set-Cookie:(.*?)=/is', $header, $matches)) {
+            $cookie = $matches[1];
+            $cookie = str_replace(' NID', '', $cookie);
+        }
+    }
+
+    echo $cookiename;
     //不需要点确认下载的文件
-    if(!$match1[0]){
-        //echo "<script  type='text/javascript'>
-        //	window.location='$url';
-        //	</script>";
+    if(!$match1[0])
+        {
         header("Location: $url", ture, 307);
     }
-    //其他类型,需要点击确认下载的文件
+    //其他类型,需要点击确认下载的文件即大文件
     else{
-        preg_match('/href="(.*?)"/is',$match1[0],$match2);//正则
-        $result = "https://drive.google.com" . $match2[1];
-        echo $result;
-        //echo "<script  type='text/javascript'>
-        //	window.open(".$result.");
-        //	</script>";
-        header("Location: $result", ture, 307);
+        preg_match('/confirm=(.*?)&/is',$match1[0],$match2);//正则获取confirm的值储存到$match2[1]中
+        $result = "https://drive.google.com/uc?export=download&confirm=" . $match2[1] . "&id=" . $id; //构造确认下载链接
+        //setcookie($cookie, $match2[1], time()+300, "/uc", ".drive.google.com",false,true);
+        //setcookie($cookie, $match2[1], time()+300, "/uc", "game.abiu.fun",false,true);
+        $temporary_link = "https://gdlink.vrt5.workers.dev/gd/" . $id;
+        //设置cookie
+        // 携带cookie请求
+        /*$options = array(
+            'http' => array(
+                'header' => "Cookie: " . $cookie,
+            )
+        );
+        $context = stream_context_create($options);
+        file_get_contents($result, false, $context);
+        */
+        header("Location: $temporary_link", ture, 307);
     }
 }
 //蓝奏云
