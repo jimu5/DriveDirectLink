@@ -29,7 +29,7 @@ https://www.lanzous.com/ibvifch
 ```
 直链获取地址
 ```
-http://game.abiu.fun/gdapi/?lz=ibvifch
+https://网站地址/?lz=ibvifch
 ```
 注意，有时候会无法获取，刷新即可
 ### 直链下载地址
@@ -45,5 +45,5 @@ https://www.lanzous.com/ibvifch
 ```
 直链下载地址
 ```
-http://game.abiu.fun/gdapi/?lzd=ibvifch
+https://网站地址/?lzd=ibvifch
 ```
