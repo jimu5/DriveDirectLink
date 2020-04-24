@@ -47,57 +47,84 @@
 		}
 	}
 	else{
-		echo "DriveDirectLink
+		echo "
+		<h1>DriveDirectLink</h1>
+
+		<p>DriveDirectLink 网盘直链下载，支持谷歌，蓝奏云</p>
+		
+		<h2>谷歌网盘直链下载</h2>
+		
+		<h3>使用方法</h3>
+		
+		<p>格式如下:
 		<br>
-		DriveDirectLink 网盘直链下载，支持谷歌，蓝奏云
-		<br>
-		谷歌网盘直链下载
-		<br>
-		使用方法
-		<br>
-		格式如下:
-		<br>
+		<code>
 		https://网站地址/?id=文件ID
+		</code>
+		例如
 		<br>
-		例如 google drive 分享链接
+		google drive 分享链接
 		<br>
+		<code>
 		https://drive.google.com/open?id=1CIFH3PiEuiUJ-_6YWBfSLxi2DR9ncVmO
+		</code>
 		<br>
 		直链地址
 		<br>
+		<code>
 		https://网站地址/?id=1CIFH3PiEuiUJ-_6YWBfSLxi2DR9ncVmO
-		蓝奏云
+		</code></p>
+
+		<h2>蓝奏云</h2>
+		
+		<h3>获取直链地址</h3>
+		
+		<p>此方法会获取并展示直链地址，而不会直接下载
 		<br>
-		获取直链地址
+		格式如下:
 		<br>
-		此方法会获取并展示直链地址，而不会直接下载 格式如下:
-		<br>
+		<code>
 		https://网站地址/?lz=文件ID
+		</code>
 		<br>
-		例如 蓝奏云分享链接
+		例如
 		<br>
+		蓝奏云分享链接
+		<br>
+		<code>
 		https://www.lanzous.com/ibvifch
+		</code>
+		<br>
 		直链获取地址
 		<br>
+		<code>
 		https://网站地址/?lz=ibvifch
+		</code>
 		<br>
-		注意，有时候会无法获取，刷新即可
+		注意，有时候会无法获取，刷新即可</p>
+		<h3>直链下载地址</h3>
+		<p>此方法会直接跳转下载，但是经过测试发现，国外机器使用直链下载容易验证码，酌情使用
 		<br>
-		直链下载地址
+		格式如下
 		<br>
-		此方法会直接跳转下载，但是经过测试发现，国外机器容易跳验证码，酌情使用 格式如下
-		<br>
+		<code>
 		https://网站地址/?lzd=文件ID
+		</code>
 		<br>
-		例如 蓝奏云分享链接
+		例如
 		<br>
+		蓝奏云分享链接
+		<br>
+		<code>
 		https://www.lanzous.com/ibvifch
+		</code>
 		<br>
 		直链下载地址
 		<br>
+		<code>
 		https://网站地址/?lzd=ibvifch
-		<br>
-		项目地址:<a herf="https://github.com/Kimiato/DriveDirectLink"> https://github.com/Kimiato/DriveDirectLink </a>
+		</code></p>
+		项目地址:<a href=\"https://github.com/Kimiato/DriveDirectLink\"> https://github.com/Kimiato/DriveDirectLink </a>
 		";
 	}
 ?>
