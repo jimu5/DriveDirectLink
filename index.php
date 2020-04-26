@@ -7,12 +7,13 @@
 <body>
 <?php
 	require_once('functions.php');
+	include_once('config.php');
 	ini_set('user_agent', 
 		'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36; 
 		zh-CN;  //蓝奏云必须设置这个且保持不变才能拿到数据
 		Nexus 4 Build/JOP40D) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Mobile Safari/535.19');
 	//屏蔽显示
-    error_reporting(0);
+    //error_reporting(0);
     //允许所有域访问
 	header("Access-Control-Allow-Origin: *");
 	//设置中文
@@ -46,7 +47,17 @@
 			echo "获取直链失败，请刷新重试";
 		}
 	}
+	//360直链下载
+	elseif(!empty($_GET['360'])){
+		$id=$_GET['360'];
+		$direct_link = link_360($id);
+		echo $direct_link;
+		header("Location: $direct_link"); //跳转到直链下载
+	}
 	else{
+		if(empty($site_name)){
+			$site_name = "https://网站地址/";
+		}
 		echo "
 		<h1>DriveDirectLink</h1>
 
@@ -59,7 +70,7 @@
 		<p>格式如下:
 		<br>
 		<code>
-		https://网站地址/?id=文件ID
+		".$site_name."?id=文件ID
 		</code>
 		例如
 		<br>
@@ -72,7 +83,7 @@
 		直链地址
 		<br>
 		<code>
-		https://网站地址/?id=1CIFH3PiEuiUJ-_6YWBfSLxi2DR9ncVmO
+		".$site_name."?id=1CIFH3PiEuiUJ-_6YWBfSLxi2DR9ncVmO
 		</code></p>
 
 		<h2>蓝奏云</h2>
@@ -84,7 +95,7 @@
 		格式如下:
 		<br>
 		<code>
-		https://网站地址/?lz=文件ID
+		".$site_name."?lz=文件ID
 		</code>
 		<br>
 		例如
@@ -98,7 +109,7 @@
 		直链获取地址
 		<br>
 		<code>
-		https://网站地址/?lz=ibvifch
+		".$site_name."?lz=ibvifch
 		</code>
 		<br>
 		注意，有时候会无法获取，刷新即可</p>
@@ -108,7 +119,7 @@
 		格式如下
 		<br>
 		<code>
-		https://网站地址/?lzd=文件ID
+		".$site_name."?lzd=文件ID
 		</code>
 		<br>
 		例如
@@ -122,9 +133,31 @@
 		直链下载地址
 		<br>
 		<code>
-		https://网站地址/?lzd=ibvifch
+		".$site_name."?lzd=ibvifch
 		</code></p>
 		项目地址:<a href=\"https://github.com/Kimiato/DriveDirectLink\"> https://github.com/Kimiato/DriveDirectLink </a>
+		<h2>360网盘直链下载</h2>
+		
+		<h3>使用方法</h3>
+		<p>只支持单个文件且无提取码
+		<p>格式如下:
+		<br>
+		<code>
+		".$site_name."?360=文件ID
+		</code>
+		例如
+		<br>
+		360网盘 分享链接
+		<br>
+		<code>
+		https://yunpan.360.cn/surl_yYgjWMz8GhU
+		</code>
+		<br>
+		直链地址
+		<br>
+		<code>
+		".$site_name."?360=surl_yYgjWMz8GhU
+		</code></p>
 		";
 	}
 ?>

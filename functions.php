@@ -1,4 +1,5 @@
 <?php
+include_once('config.php');
 function send_post($url, $post_data) {
     $postdata = http_build_query($post_data);
     $options = array(
@@ -18,44 +19,15 @@ function send_post($url, $post_data) {
 //谷歌网盘
 function google_drive($id){
     $url = "https://drive.google.com/uc?id=" . $id . "&export=download" ;
-    $html = file_get_contents($url);
-    preg_match('/uc-download-link[^>]*(.href=["]).*?["]/is',$html,$match1);//正则匹配下载里面的内容
-
-    //获取cookie
-    $cookie = "";
-    foreach ($http_response_header as $header) {
-        if (preg_match('/Set-Cookie:(.*?)=/is', $header, $matches)) {
-            $cookie = $matches[1];
-            $cookie = str_replace(' NID', '', $cookie);
-        }
+    if(empty($cf_workers)){
+        $direct_link = "https://gd.kway.workers.dev/gd/" . $id;
     }
-
-    echo $cookiename;
-    //不需要点确认下载的文件
-    if(!$match1[0])
-        {
-        header("Location: $url", ture, 307);
-    }
-    //其他类型,需要点击确认下载的文件即大文件
     else{
-        preg_match('/confirm=(.*?)&/is',$match1[0],$match2);//正则获取confirm的值储存到$match2[1]中
-        $result = "https://drive.google.com/uc?export=download&confirm=" . $match2[1] . "&id=" . $id; //构造确认下载链接
-        //setcookie($cookie, $match2[1], time()+300, "/uc", ".drive.google.com",false,true);
-        //setcookie($cookie, $match2[1], time()+300, "/uc", "game.abiu.fun",false,true);
-        $temporary_link = "https://gdlink.vrt5.workers.dev/gd/" . $id;
-        //设置cookie
-        // 携带cookie请求
-        /*$options = array(
-            'http' => array(
-                'header' => "Cookie: " . $cookie,
-            )
-        );
-        $context = stream_context_create($options);
-        file_get_contents($result, false, $context);
-        */
-        header("Location: $temporary_link", ture, 307);
+        $direct_link = $cf_workers . $id;
     }
+    header("Location: $direct_link", ture, 307);
 }
+
 //蓝奏云
 function lzy($lz){
     $url = "https://www.lanzous.com/" . $lz;
@@ -64,7 +36,12 @@ function lzy($lz){
     preg_match("/<body[^>]*?>(.*\s*?)<\/body>/is", $html, $matches);
     */
     preg_match_all("/<iframe[^>]*>/is", $html, $matches);  //$matches[0][1]内包含我们需要的数据
-    preg_match('/src="(.*?)"/', $matches[0][1], $download_para); //正则匹配下载参数
+    if(strlen($matches[0][1])>7){
+        preg_match('/src="(.*?)"/', $matches[0][1], $download_para); //正则匹配下载参数
+    }
+    else{
+        preg_match('/src="(.*?)"/', $matches[0][0], $download_para);
+    }
     //echo $download_para[1];
     //拼接下载链接字符串
     $download_link = "https://www.lanzous.com/" . $download_para[1];
@@ -86,12 +63,46 @@ function lzy($lz){
     //拼接获取下载直链
     $direct_link = $direct_link_info->dom . "/file/" . $direct_link_info->url;
     if (strlen($direct_link)<40){
+        echo $direct_link;
         return 0;
     }
     return $direct_link;
     //echo '<script>window.location.href=" '.$direct_link. '";</script>';
     //header("Location:$direct_link");
     //echo $matches[0][0];
+}
+function link_360($id){
+    $url = "https://yunpan.360.cn/" . $id;
+    //获取header
+    file_get_contents($url);
+    //$http_response_header[5]为跳转的链接
+    $link_302=str_replace("Location: ", "", $http_response_header[5]);
+    //echo $link_302;
+    preg_match("{https://(.*?)\.}is", $link_302, $prefix_link);
+    //网址前缀
+    //echo $prefix_link[1];
+    $html = file_get_contents($link_302);
+    //获取nid
+    preg_match('/"nid": "(.*?)"/is', $html, $nid);
+    //echo $nid[1];
 
+    //设置360网盘
+    $post_data = "shorturl=" . $id . "&nid=" .$nid[1];
+    //$postdata = http_build_query($post_data);
+    $options = array(
+        'http' => array(
+            'method' => 'POST',
+            //设置请求头
+            'header' => 'Referer: ' . ".$link_302.",
+            'content' => $post_data,
+            'timeout' => 15 * 60 // 超时时间（单位:s）
+        )
+    );
+    $context = stream_context_create($options);
+    $reuqest_url ="https://" . $prefix_link[1] . ".link.yunpan.360.cn/share/downloadfile";
+    $result = file_get_contents($reuqest_url, false, $context);
+    $result_info = json_decode($result);
+    //跳转
+    return $result_info->data->downloadurl;
 }
 ?>
