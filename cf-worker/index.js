@@ -1,6 +1,6 @@
 /*
- * @link      https://github.com/reruin/workers/blob/e4e0876c572d3834d7e1c6bbc88aa3c279313d87/link/index.js 
- * @license   https://github.com/reruin/workers/blob/e4e0876c572d3834d7e1c6bbc88aa3c279313d87/LICENSE
+ * link      https://github.com/reruin/workers/blob/e4e0876c572d3834d7e1c6bbc88aa3c279313d87/link/index.js 
+ * license   https://github.com/reruin/workers/blob/e4e0876c572d3834d7e1c6bbc88aa3c279313d87/LICENSE
 */
 const googleDriveCtrl = async (ctx , view) => {
   const id = ctx.params.id
