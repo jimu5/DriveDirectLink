@@ -1,5 +1,5 @@
 # DriveDirectLink
-DriveDirectLink 网盘直链下载，支持谷歌，蓝奏云
+DriveDirectLink 网盘直链下载，支持谷歌，蓝奏云,360网盘  
 在线使用预览：https://214214.xyz/tools/dlink/
 ## 谷歌网盘直链下载(使用cf-workers代理)
 ### 使用方法
