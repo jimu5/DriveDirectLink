@@ -135,7 +135,6 @@
 		<code>
 		".$site_name."?lzd=ibvifch
 		</code></p>
-		项目地址:<a href=\"https://github.com/Kimiato/DriveDirectLink\"> https://github.com/Kimiato/DriveDirectLink </a>
 		<h2>360网盘直链下载</h2>
 		
 		<h3>使用方法</h3>
@@ -158,6 +157,8 @@
 		<code>
 		".$site_name."?360=surl_yYgjWMz8GhU
 		</code></p>
+		项目地址:<a href=\"https://github.com/Kimiato/DriveDirectLink\"> https://github.com/Kimiato/DriveDirectLink </a>
+
 		";
 	}
 ?>
