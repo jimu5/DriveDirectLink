@@ -1,7 +1,7 @@
 # DriveDirectLink
 DriveDirectLink 网盘直链下载，支持谷歌，蓝奏云
 在线使用预览：https://214214.xyz/tools/dlink/
-## 谷歌网盘直链下载(大文件直链可能有问题，正在加紧修复)
+## 谷歌网盘直链下载(使用cf-workers代理)
 ### 使用方法
 格式如下:
 ```
@@ -23,7 +23,7 @@ https://网站地址/?id=1CIFH3PiEuiUJ-_6YWBfSLxi2DR9ncVmO
 ```
 https://网站地址/?lz=文件ID
 ```
-例如
+例如  
 蓝奏云分享链接
 ```
 https://www.lanzous.com/ibvifch
@@ -48,3 +48,28 @@ https://www.lanzous.com/ibvifch
 ```
 https://网站地址/?lzd=ibvifch
 ```
+## 360网盘
+### 使用方法
+格式如下:
+```
+https://网站地址/?360=文件ID
+```
+例如
+360 分享链接
+```
+https://yunpan.360.cn/surl_yYgjWMz8GhU
+```
+直链地址
+```
+https://网站地址/?360=surl_yYgjWMz8GhU
+```
+---
+## 4月26日更新说明
+更新谷歌网盘直链解析用cf-worker代理  
+不用梯子也可以直接直链下载网盘的内容了  
+添加360网盘解析  
+增加config文件，方便修改配置  
+### 如何使用cf-worker
+申请cf-worker  
+将cf-worker文件夹中的index.js内容复制到cf-worker的左侧代码（Script）区域
+然后将你的cf-worker链接填入config.php文件修改
