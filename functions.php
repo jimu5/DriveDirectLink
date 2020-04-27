@@ -19,11 +19,17 @@ function send_post($url, $post_data) {
 //谷歌网盘
 function google_drive($id){
     $url = "https://drive.google.com/uc?id=" . $id . "&export=download" ;
-    if(empty($cf_workers)){
+    global $cf_worker;
+    if(empty($cf_worker)){
         $direct_link = "https://gd.kway.workers.dev/gd/" . $id;
     }
     else{
-        $direct_link = $cf_workers . $id;
+        if($cf_worker{strlen($cf_worker)-1} == "/"){
+            $direct_link = $cf_worker . "gd/" . $id;
+        }
+        else{
+            $direct_link = $cf_worker . "/gd/" . $id;
+        }
     }
     header("Location: $direct_link", ture, 307);
 }
