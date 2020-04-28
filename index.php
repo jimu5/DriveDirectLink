@@ -13,7 +13,7 @@
 		zh-CN;  //蓝奏云必须设置这个且保持不变才能拿到数据
 		Nexus 4 Build/JOP40D) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Mobile Safari/535.19');
 	//屏蔽显示
-    //error_reporting(0);
+    error_reporting(0);
     //允许所有域访问
 	header("Access-Control-Allow-Origin: *");
 	//设置中文
