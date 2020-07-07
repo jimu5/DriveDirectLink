@@ -77,13 +77,13 @@
 		google drive 分享链接
 		<br>
 		<code>
-		https://drive.google.com/open?id=1CIFH3PiEuiUJ-_6YWBfSLxi2DR9ncVmO
+		https://drive.google.com/open?id=1TSlvfrRrGrT8a_84iFDIkSwrxU_53D6T
 		</code>
 		<br>
 		直链地址
 		<br>
 		<code>
-		".$site_name."?id=1CIFH3PiEuiUJ-_6YWBfSLxi2DR9ncVmO
+		".$site_name."?id=1TSlvfrRrGrT8a_84iFDIkSwrxU_53D6T
 		</code></p>
 
 		<h2>蓝奏云</h2>
