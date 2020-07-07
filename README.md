@@ -10,11 +10,11 @@ https://网站地址/?id=文件ID
 例如
 google drive 分享链接
 ```
-https://drive.google.com/open?id=1CIFH3PiEuiUJ-_6YWBfSLxi2DR9ncVmO
+https://drive.google.com/open?id=1TSlvfrRrGrT8a_84iFDIkSwrxU_53D6T
 ```
 直链地址
 ```
-https://网站地址/?id=1CIFH3PiEuiUJ-_6YWBfSLxi2DR9ncVmO
+https://网站地址/?id=1TSlvfrRrGrT8a_84iFDIkSwrxU_53D6T
 ```
 ## 蓝奏云
 ### 获取直链地址
